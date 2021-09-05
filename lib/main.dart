@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:math';
 import 'package:undo/undo.dart';
-import 'letter_tile.dart';
+import 'widgets/letter_tile.dart';
 import 'stacked_layout_brain.dart';
 import 'stacked_layout.dart';
 import 'action_button.dart';

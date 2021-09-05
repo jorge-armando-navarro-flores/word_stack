@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'stacked_layout.dart';
 import 'package:undo/undo.dart';
-import 'letter_tile.dart';
+import 'widgets/letter_tile.dart';
 
 class StackedLayoutBrain extends StatelessWidget {
   const StackedLayoutBrain({

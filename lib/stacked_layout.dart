@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'letter_tile.dart';
+import 'widgets/letter_tile.dart';
 
 class StackedLayout extends StatefulWidget {
   final _StackedLayoutState stackedLayoutState = new _StackedLayoutState();
