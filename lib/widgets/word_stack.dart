@@ -17,13 +17,15 @@ class WordStack extends StatelessWidget {
       child: Draggable<LetterTile>(
         // Data is the value this Draggable stores.
 
-        data: LetterTile(letter: Provider.of<WordRowsData>(context, listen: false).st!.last),
-        child: LetterTile(letter: Provider.of<WordRowsData>(context, listen: false).st!.last),
-        feedback: LetterTile(letter: Provider.of<WordRowsData>(context, listen: false).st!.last),
-        childWhenDragging: LetterTile(letter: Provider.of<WordRowsData>(context, listen: false).st!.last),
+        data: LetterTile(letter: Provider.of<WordRowsData>(context, listen: false).stack!.peek()),
+        child: LetterTile(letter: Provider.of<WordRowsData>(context, listen: false).stack!.peek()),
+        feedback: LetterTile(letter: Provider.of<WordRowsData>(context, listen: false).stack!.peek()),
+        childWhenDragging: LetterTile(letter: Provider.of<WordRowsData>(context, listen: false).stack!.peek()),
         onDragCompleted: () {
           Provider.of<WordRowsData>(context, listen: false).changeRowsColor(Colors.white);
-          Provider.of<WordRowsData>(context, listen: false).pop();
+
+
+
 
         },
         onDragStarted: () {

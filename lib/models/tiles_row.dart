@@ -15,4 +15,8 @@ class TilesRow{
     tiles = [];
   }
 
+  LetterTile removeTile(){
+    return tiles.removeLast();
+  }
+
 }

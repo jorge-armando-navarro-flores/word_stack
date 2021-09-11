@@ -3,10 +3,10 @@ class LetterStack{
   Letter? bottom;
   int length = 0;
 
-  LetterStack(){
-    this.top = null;
-    this.bottom = null;
-    this.length = 0;
+  LetterStack(String word){
+    for(int i = word.length-1; i >= 0; i--){
+      this.push(word[i]);
+    }
   }
 
   String peek(){

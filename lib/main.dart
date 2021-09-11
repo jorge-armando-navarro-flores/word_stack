@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
+import 'package:word_stack/models/letter_stack.dart';
 
 import 'package:word_stack/screens/word_stack_screen.dart';
 
@@ -16,7 +17,7 @@ void main() {
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
 
-  List<String> setScrambledString(String word1, String word2){
+  String setScrambledString(String word1, String word2){
     int w1Idx = 0;
     int w2Idx = 0;
     String scrambledString = "";
@@ -31,19 +32,17 @@ class MyApp extends StatelessWidget {
         w2Idx++;
       }
     }
-    scrambledString += word1.substring(w1Idx, word1.length) + word2.substring(w2Idx, word2.length);
-    List<String> scrambledLetters = scrambledString.split('').reversed.toList();
-
-    return scrambledLetters;
-
-
+    return scrambledString += word1.substring(w1Idx, word1.length) + word2.substring(w2Idx, word2.length);
 
   }
   @override
   Widget build(BuildContext context) {
+
+    LetterStack letterStack = LetterStack(setScrambledString("Hello", "world"));
+
     return ChangeNotifierProxyProvider0(
       create: (context) => WordRowsData(),
-      update: (context, t) => WordRowsData(st: setScrambledString("Hello", "world")),
+      update: (context, t) => WordRowsData(stack: letterStack),
       child: MaterialApp(
         theme: ThemeData(
           primarySwatch: Colors.blue,

@@ -44,6 +44,7 @@ class WordStackScreen extends StatelessWidget {
                 ActionButton(
                   text: 'Undo',
                   onPressed: () {
+                    Provider.of<WordRowsData>(context, listen: false).undo();
                     // setState(() {
                     //   changes.undo();
                     // });

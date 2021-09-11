@@ -1,14 +1,18 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:undo/undo.dart';
+import 'package:word_stack/models/letter_stack.dart';
 import 'package:word_stack/models/tiles_row.dart';
+import 'package:word_stack/widgets/letter_tile.dart';
 
 
 
 class WordRowsData extends ChangeNotifier{
   TilesRow row1 = TilesRow();
   TilesRow row2 = TilesRow();
-  List<String>? st;
-  WordRowsData({this.st});
+  LetterStack? stack;
+  final changes = new ChangeStack();
+  WordRowsData({this.stack});
 
   void changeRowsColor(Color newColor){
     row1.changeColor(newColor);
@@ -22,8 +26,14 @@ class WordRowsData extends ChangeNotifier{
     notifyListeners();
   }
 
-  void pop(){
-    st!.removeLast();
+  String pop(){
+    String removed = stack!.pop();
+
+    return removed;
+  }
+
+  void undo(){
+    changes.undo();
     notifyListeners();
   }
 
