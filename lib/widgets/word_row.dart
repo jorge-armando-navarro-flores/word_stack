@@ -32,9 +32,6 @@ class WordRow extends StatelessWidget {
           );
         },
         onAccept: (LetterTile data) {
-          // tiles.add(data);
-          // Provider.of<LetterStack>(context, listen: false).pushTile(row!, data);
-
           Provider.of<LetterStack>(context, listen: false).pop();
 
           Provider.of<WordRowsData>(context, listen: false).changes.add(
@@ -46,11 +43,9 @@ class WordRow extends StatelessWidget {
         },
         onMove: (DragTargetDetails<LetterTile> details) {
           row!.changeColor(Colors.green.shade200);
-          // Provider.of<LetterStack>(context, listen: false).changeRowColor(row!, Colors.green.shade200);
         },
         onLeave: (LetterTile? letter) {
           row!.changeColor(Colors.blue.shade200);
-          // Provider.of<LetterStack>(context, listen: false).changeRowColor(row!, Colors.blue.shade200);
         },
       ),
     );

@@ -2,16 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:word_stack/models/letter_stack.dart';
 import 'package:word_stack/models/word_rows_data.dart';
-
-
 import 'letter_tile.dart';
 
 
 class WordStack extends StatelessWidget {
-
-  final LetterStack? stack;
-  WordStack({this.stack});
-
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +22,6 @@ class WordStack extends StatelessWidget {
         childWhenDragging: LetterTile(letter: Provider.of<LetterStack>(context, listen: false).peek()),
         onDragCompleted: () {
           Provider.of<WordRowsData>(context, listen: false).changeRowsColor(Colors.white);
-
-
-
 
         },
         onDragStarted: () {
