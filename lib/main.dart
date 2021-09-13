@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
+import 'package:word_stack/models/app_data.dart';
 import 'package:word_stack/models/letter_stack.dart';
 
 import 'package:word_stack/screens/word_stack_screen.dart';
@@ -38,18 +39,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    LetterStack letterStack = LetterStack(setScrambledString("Hello", "world"));
+    AppData appData = AppData();
 
-    return ChangeNotifierProxyProvider0(
-      create: (context) => WordRowsData(),
-      update: (context, t) => WordRowsData(stack: letterStack),
-      child: MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProxyProvider0(
+        create: (context) => WordRowsData(),
+        update: (context, t) => WordRowsData(),
         ),
-        home: WordStackScreen(),
-      ),
-    );
+        FutureProvider<LetterStack?>(
+            create: (context) => appData.fetchWord(),
+            initialData: null,
+        )
+
+      ],
+        child: MaterialApp(
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: WordStackScreen(),
+        ),
+      );
+
   }
 }
 
