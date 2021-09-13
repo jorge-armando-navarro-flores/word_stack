@@ -31,7 +31,7 @@ class WordStackScreen extends StatelessWidget {
                     Provider.of<WordRowsData>(context, listen: false)
                         .clearRows();
                     Provider.of<LetterStack>(context, listen: false)
-                        .rebuildStack(AppData.currentScrambledWord);
+                        .fillStack(AppData.currentScrambledWord);
                   },
                 ),
                 SizedBox(

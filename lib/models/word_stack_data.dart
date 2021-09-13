@@ -45,7 +45,10 @@ class AppData{
       String scrambledString = setScrambledString(word1, word2);
       currentScrambledWord = scrambledString;
 
-      return LetterStack(scrambledString);
+      LetterStack letterStack =LetterStack();
+      letterStack.fillStack(scrambledString);
+
+      return letterStack;
     }
 }
 

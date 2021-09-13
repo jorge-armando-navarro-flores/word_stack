@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:word_stack/models/letter_stack.dart';
 import 'package:word_stack/widgets/letter_tile.dart';
-class TilesRow{
+class TilesRow extends LetterStack{
   List<LetterTile> tiles = [];
   Color color = Colors.white;
   void changeColor(Color newColor){

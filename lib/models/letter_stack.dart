@@ -1,82 +1,98 @@
+import 'package:word_stack/widgets/letter_tile.dart';
+
 const int defaultWordLength = 5;
 
 class LetterStack {
-  Letter? top;
-  Letter? bottom;
-  int length = 0;
 
-  LetterStack(String word) {
-    rebuildStack(word);
-  }
+  List<LetterTile> stack = [];
+  // Letter? top;
+  // Letter? bottom;
+  // int length = 0;
 
-  void rebuildStack(String word) {
-    top = null;
-    bottom = null;
-    length = 0;
+
+
+  void fillStack(String word) {
+    // top = null;
+    // bottom = null;
+    // length = 0;
+    clear();
     for (int i = word.length - 1; i >= 0; i--) {
-      this.push(word[i]);
+      push(word[i]);
     }
+
+
   }
 
-  String peek() {
-    if (this.length == 0) {
-      return '';
+  LetterTile peek() {
+    if (stack.length == 0) {
+      return LetterTile(letter: '');
     } else {
-      return this.top!.value!;
+      return stack.last;
     }
+
+
   }
 
   void push(String letter) {
-    Letter newNode = Letter(letter);
-    if (this.top == null) {
-      this.bottom = newNode;
-      this.top = newNode;
-      this.length++;
-    } else {
-      newNode.next = this.top;
-      this.top = newNode;
-      this.length++;
-    }
+    // Letter newNode = Letter(letter);
+    // if (this.top == null) {
+    //   this.bottom = newNode;
+    //   this.top = newNode;
+    //   this.length++;
+    // } else {
+    //   newNode.next = this.top;
+    //   this.top = newNode;
+    //   this.length++;
+    // }
+
+    stack.add(LetterTile(letter: letter));
   }
 
-  String pop() {
-    if (this.length == 0) {
-      return '';
-    } else {
-      String letterPop = this.top!.value!;
-      this.top = this.top!.next;
-      this.length--;
-      return letterPop;
-    }
+  LetterTile pop() {
+    // if (this.length == 0) {
+    //   return '';
+    // } else {
+    //   String letterPop = this.top!.value!;
+    //   this.top = this.top!.next;
+    //   this.length--;
+    //   return letterPop;
+    // }
+
+    return stack.removeLast();
   }
 
   bool isEmpty() {
-    if (this.length == 0) {
-      return true;
-    } else {
-      return false;
-    }
+    // if (this.length == 0) {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
+    return stack.isEmpty;
   }
 
-  void printStack() {
-    List<String> array = [];
-
-    Letter? currentNode = this.top;
-    while (currentNode != null) {
-      array.add(currentNode.value!);
-      currentNode = currentNode.next;
-    }
-
-    print(array);
+  void clear(){
+    stack = [];
   }
+
+  // void printStack() {
+  //   List<String> array = [];
+  //
+  //   Letter? currentNode = this.top;
+  //   while (currentNode != null) {
+  //     array.add(currentNode.value!);
+  //     currentNode = currentNode.next;
+  //   }
+  //
+  //   print(array);
+  // }
 }
 
-class Letter {
-  String? value;
-  Letter? next;
-
-  Letter(String value) {
-    this.value = value;
-    this.next = null;
-  }
-}
+// class Letter {
+//   String? value;
+//   Letter? next;
+//
+//   Letter(String value) {
+//     this.value = value;
+//     this.next = null;
+//   }
+// }
