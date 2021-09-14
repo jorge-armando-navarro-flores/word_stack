@@ -1,23 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:word_stack/models/letter_stack.dart';
-import 'package:word_stack/widgets/letter_tile.dart';
-class TilesRow extends LetterStack{
-  List<LetterTile> tiles = [];
+import 'package:word_stack/models/tiles_stack.dart';
+
+class TilesRow extends TileStack{
   Color color = Colors.white;
+
   void changeColor(Color newColor){
     color = newColor;
-  }
-
-  void addTile(LetterTile tile){
-    tiles.add(tile);
-  }
-
-  void clear(){
-    tiles = [];
-  }
-
-  LetterTile removeTile(){
-    return tiles.removeLast();
   }
 
 }

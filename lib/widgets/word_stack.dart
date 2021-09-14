@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:word_stack/models/letter_stack.dart';
-import 'package:word_stack/models/word_rows_data.dart';
+import 'package:word_stack/models/tiles_stack.dart';
+import 'package:word_stack/providers/word_rows_data.dart';
 import 'letter_tile.dart';
 
 
@@ -11,26 +11,30 @@ class WordStack extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-    return Provider.of<LetterStack?>(context) == null ? CircularProgressIndicator():
+    return Provider.of<TileStack?>(context) == null ? CircularProgressIndicator():
     Container(
-      child: Draggable<LetterTile>(
+      child: Consumer2<TileStack, WordRowsData>(
+        builder: (context, tileStack, wordRowsData, child)
+    {
+      return Draggable<LetterTile>(
         // Data is the value this Draggable stores.
 
-        data: Provider.of<LetterStack>(context, listen: false).peek(),
-        child: Provider.of<LetterStack>(context, listen: false).peek(),
-        feedback: Provider.of<LetterStack>(context, listen: false).peek(),
-        childWhenDragging: Provider.of<LetterStack>(context, listen: false).peek(),
+        data: tileStack.peek(),
+        child: tileStack.peek(),
+        feedback: tileStack.peek(),
+        childWhenDragging: tileStack.peek(),
         onDragCompleted: () {
-          Provider.of<WordRowsData>(context, listen: false).changeRowsColor(Colors.white);
-
+          wordRowsData.changeRowsColor(Colors.white);
         },
         onDragStarted: () {
-          Provider.of<WordRowsData>(context, listen: false).changeRowsColor(Colors.blue.shade200);
+          wordRowsData.changeRowsColor(Colors.blue.shade200);
         },
         onDraggableCanceled: (Velocity g, Offset l) {
-          Provider.of<WordRowsData>(context, listen: false).changeRowsColor(Colors.white);
+          wordRowsData.changeRowsColor(Colors.white);
         },
-      ),
+      );
+    }
+      )
     );
   }
 }

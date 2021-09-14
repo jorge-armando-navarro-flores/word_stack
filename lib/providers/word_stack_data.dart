@@ -1,12 +1,11 @@
 import 'dart:math';
 import 'package:flutter/services.dart';
-import 'package:word_stack/models/letter_stack.dart';
+import 'package:word_stack/models/tiles_stack.dart';
 
 
-class AppData{
-  // The value that will be provided must be a `Future`.
+class WordStackData{
+
    static String currentScrambledWord = "";
-
 
     String setScrambledString(String word1, String word2) {
       int w1Idx = 0;
@@ -26,17 +25,17 @@ class AppData{
           word2.substring(w2Idx, word2.length);
     }
 
-
-
-   Future<LetterStack> fetchWord() async{
+   Future<TileStack> fetchWord() async{
       String data = await rootBundle.loadString("textFiles/words.txt");
       List<String> wordList = data.split('\n');
       List<String> sizedWordList = [];
+
       for(String word in wordList){
         if(word.length == defaultWordLength){
           sizedWordList.add(word);
         }
       }
+
       String word1 = sizedWordList[Random().nextInt(sizedWordList.length)];
       String word2 = sizedWordList[Random().nextInt(sizedWordList.length)];
       print(word1);
@@ -45,7 +44,7 @@ class AppData{
       String scrambledString = setScrambledString(word1, word2);
       currentScrambledWord = scrambledString;
 
-      LetterStack letterStack =LetterStack();
+      TileStack letterStack =TileStack();
       letterStack.fillStack(scrambledString);
 
       return letterStack;
